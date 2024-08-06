@@ -26,7 +26,6 @@ def get_outages():
 def get_site_info(site_id: str):
     url = f"{API_BASE_URL}/site-info/{site_id}"
     response = requests.get(url=url, headers=HEADERS)
-    print(response.json())
     if response.status_code != 200:
         raise ValueError(f"Unexpected return from get site info: {str(response)}.")
     return response.json()
@@ -58,3 +57,4 @@ if __name__ == "__main__":
     site_info = get_site_info(site_id=site_id)
     filtered_outages = filtered_outages(outages=outages, site_info=site_info)
     post_site_outages(site_id=site_id, outages=filtered_outages)
+    print("The program ran successfully!")
